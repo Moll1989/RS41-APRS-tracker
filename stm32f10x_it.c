@@ -155,6 +155,18 @@ void SysTick_Handler(void)
   * @}
   */
 
+void TIM6_IRQHandler(void)   
+{
+         If (TIM_GetITStatus(TIM6, TIM_IT_Update) != RESET) //Get the interrupt status
+    {
+        TIM_ClearITPendingBit(TIM6, TIM_IT_Update ); //Clear interrupt flag
+        // Here to do the interrupt needs to be handled, as concise as possible, to avoid staying in the interrupt for a long time
+        //GPIO_WriteBit(GPIOB, GPIO_Pin_0, (BitAction)(1-(GPIO_ReadOutputDataBit(GPIOB,  GPIO_Pin_0))));
+        GPIO_SetBits(GPIOB, Green);
+    }
+ 
+}
+
 
 /******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/
-© 2021 GitHub, Inc.
+
